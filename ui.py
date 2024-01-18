@@ -8,10 +8,13 @@ class QuizInterface:
 
 
     def end_game(self):
-        self.question_label.config(text=f"Final score is: \n{self.score}/10")
+        self.question_label.config(bg="white",text=f"Final score is: \n{self.score}/10")
 
     def get_next_question(self):
-        self.question_label.config(bg="white",text=f"Q.{self.index}: {html.unescape(question_data[self.index])}")
+        if self.index == 10:
+            self.end_game()
+        else:
+            self.question_label.config(bg="white",text=f"Q.{self.index}: {html.unescape(question_data[self.index])}")
     def update_ui(self,answer):
         if self.index == 10:
             self.end_game()
